@@ -211,6 +211,105 @@
               
 
   
+    <article id="post-vue数据绑定问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2019/10/26/vue%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E9%97%AE%E9%A2%98/" target="_blank">vue 数据绑定时，绑定的数据是对象，对象属性变化时双向绑定无效</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2019/10/26/vue%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A%E9%97%AE%E9%A2%98/" class="archive-article-date">
+        <time datetime="2019-10-26T01:35:19.922Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="问题原因："><a href="#问题原因：" class="headerlink" title="问题原因："></a>问题原因：</h4><blockquote>
+<p>数据绑定为对象时，对象的属性可新增。由于Vue只会在初始化页面时会使用Object.defineProperty()劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。但是对象新增的属性并没有重写setter、getter方法，导致双向绑定无效。</p>
+</blockquote>
+<h5 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h5><blockquote>
+<p>给所绑定的对象新增属性时，不要直接定义属性，要用Vue.$set方法新增属性。</p>
+</blockquote>
+<h5 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h5><p><a href="https://cn.vuejs.org/v2/api/#vm-set" target="_blank" rel="noopener">Vue.$set介绍</a><br><a href="https://segmentfault.com/a/1190000006599500" target="_blank" rel="noopener">剖析Vue原理&amp;实现双向绑定MVVM - 前端足迹 - SegmentFault</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-go语言变量声明后的默认值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -513,6 +612,10 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">golang</a>
