@@ -21,7 +21,7 @@
 <meta property="og:site_name" content="黎锦荣">
 <meta property="og:description" content="问题原因： 数据绑定为对象时，对象的属性可新增。由于Vue只会在初始化页面时会使用Object.defineProperty()劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。但是对象新增的属性并没有重写setter、getter方法，导致双向绑定无效。  解决方案： 给所绑定的对象新增属性时，不要直接定义属性，要用Vue.$set方法新增属性。  参考">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-10-26T01:45:46.635Z">
+<meta property="og:updated_time" content="2019-10-28T09:10:17.841Z">
 <meta name="twitter:card" content="summary">
   
   <link
