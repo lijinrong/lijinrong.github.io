@@ -1,0 +1,694 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>react PureComponent和React.memo的简单作用 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="React-redux用法.html" />
+    
+    
+    <link rel="prev" href="react hook 原理.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    技术笔记
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="缓存策略.html">
+            
+                <a href="缓存策略.html">
+            
+                    
+                    缓存策略
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="跨标签页通信.html">
+            
+                <a href="跨标签页通信.html">
+            
+                    
+                    跨标签页通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="前端路由的两种模式：hash模式和 history模式.html">
+            
+                <a href="前端路由的两种模式：hash模式和 history模式.html">
+            
+                    
+                    前端路由的两种模式：hash模式和 history模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="前端性能优化手段.html">
+            
+                <a href="前端性能优化手段.html">
+            
+                    
+                    前端性能优化手段
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="前端性能优化之白屏时间.html">
+            
+                <a href="前端性能优化之白屏时间.html">
+            
+                    
+                    前端性能优化之白屏时间
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="前端性能优化指标之RAIL.html">
+            
+                <a href="前端性能优化指标之RAIL.html">
+            
+                    
+                    前端性能优化指标之RAIL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="事件模型.html">
+            
+                <a href="事件模型.html">
+            
+                    
+                    事件模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="行内元素、块级元素.html">
+            
+                <a href="行内元素、块级元素.html">
+            
+                    
+                    行内元素、块级元素
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="重排和重绘.html">
+            
+                <a href="重排和重绘.html">
+            
+                    
+                    重排和重绘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="async await为什么可以捕获Promise内部异常.html">
+            
+                <a href="async await为什么可以捕获Promise内部异常.html">
+            
+                    
+                    async await为什么可以捕获Promise内部异常
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="css揭秘笔记.html">
+            
+                <a href="css揭秘笔记.html">
+            
+                    
+                    css揭秘笔记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="http2.0.html">
+            
+                <a href="http2.0.html">
+            
+                    
+                    http2.0
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.13" data-path="https.html">
+            
+                <a href="https.html">
+            
+                    
+                    https
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.14" data-path="js使用技巧.html">
+            
+                <a href="js使用技巧.html">
+            
+                    
+                    js使用技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.15" data-path="markdown.html">
+            
+                <a href="markdown.html">
+            
+                    
+                    markdown
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.16" data-path="react hook 原理.html">
+            
+                <a href="react hook 原理.html">
+            
+                    
+                    react hook 原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.17" data-path="react PureComponent和React.memo的简单作用.html">
+            
+                <a href="react PureComponent和React.memo的简单作用.html">
+            
+                    
+                    react PureComponent和React.memo的简单作用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.18" data-path="React-redux用法.html">
+            
+                <a href="React-redux用法.html">
+            
+                    
+                    React-redux用法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.19" data-path="typescript学习.html">
+            
+                <a href="typescript学习.html">
+            
+                    
+                    typescript学习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.20" data-path="webpack.html">
+            
+                <a href="webpack.html">
+            
+                    
+                    webpack
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.21" data-path="vue数据绑定问题.html">
+            
+                <a href="vue数据绑定问题.html">
+            
+                    
+                    vue数据绑定问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.22" data-path="go语言变量声明后的默认值.html">
+            
+                <a href="go语言变量声明后的默认值.html">
+            
+                    
+                    go语言变量声明后的默认值
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.23" data-path="less 使用技巧.html">
+            
+                <a href="less 使用技巧.html">
+            
+                    
+                    less 使用技巧
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    其他笔记
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../其他笔记/面试问题.html">
+            
+                <a href="../其他笔记/面试问题.html">
+            
+                    
+                    面试问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../其他笔记/前端开发面试常见问题.html">
+            
+                <a href="../其他笔记/前端开发面试常见问题.html">
+            
+                    
+                    前端开发面试常见问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >react PureComponent和React.memo的简单作用</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>[TOC]</p>
+<h1 id="react-purecomponent&#x548C;reactmemo&#x7684;&#x7B80;&#x5355;&#x4F5C;&#x7528;">react PureComponent&#x548C;React.memo&#x7684;&#x7B80;&#x5355;&#x4F5C;&#x7528;</h1>
+<blockquote>
+<p>PureComponent &#x548C; React.memo&#x7684;&#x4F5C;&#x7528;&#x90FD;&#x662F;&#x4E3A;&#x4E86;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x800C;&#x51FA;&#x73B0;&#x7684;&#xFF0C;&#x76EE;&#x7684;&#x662F;&#x51CF;&#x5C11;&#x7EC4;&#x4EF6;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x6E32;&#x67D3;&#x3002;&#x533A;&#x522B;&#x662F;PureComponent&#x662F;&#x4F5C;&#x7528;&#x5728;class &#x7EC4;&#x4EF6;&#xFF0C;React.memo&#x662F;&#x4F5C;&#x7528;&#x5728;&#x51FD;&#x6570;&#x7EC4;&#x4EF6;&#x3002;</p>
+</blockquote>
+<h2 id="purecomponent">PureComponent</h2>
+<p>&#x5148;&#x6765;&#x770B;&#x4E2A;&#x7B80;&#x5355;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code>class Child extends React.Component {
+  render() {
+    console.log(&apos;Child render function is runing.&apos;);
+    return &lt;div&gt;Child&lt;/div&gt;;
+  }
+}
+
+class Parent extends React.Component {
+  state = {
+    num: 1,
+  };
+  handleClick = () =&gt; {
+    this.setState(state =&gt; ({
+      num: state.num + 1,
+    }));
+  };
+
+  render() {
+    console.log(&apos;Parent render function is runing.&apos;);
+    return (
+      &lt;&gt;
+        &lt;button type=&quot;primary&quot; onClick={this.handleClick}&gt;
+          click to change{this.state.num}
+        &lt;/button&gt;
+        &lt;Child /&gt;
+      &lt;/&gt;
+    );
+  }
+}
+</code></pre><p>&#x9875;&#x9762;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x5C31;&#x4E00;&#x4E2A;&#x6309;&#x94AE;&#xFF0C;&#x548C;&#x53EA;&#x6709;&#x6587;&#x672C;&#x7684;&#x5B50;&#x7EC4;&#x4EF6;&#xFF0C;&#x7236;&#x5B50;&#x7EC4;&#x4EF6;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x901A;&#x4FE1;&#xFF1A;</p>
+<p><img src="../assets/image-20210115175807882.png" alt="image-20210115175807882"></p>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x7236;&#x7EC4;&#x4EF6;&#x548C;&#x5B50;&#x7EC4;&#x4EF6;&#x7684;render&#x51FD;&#x6570;&#x90FD;&#x88AB;&#x89E6;&#x53D1;&#x4E86;&#xFF1A;</p>
+<p><img src="../assets/image-20210115180051582.png" alt="image-20210115180051582"></p>
+<p>&#x4F46;&#x662F;&#x7236;&#x5B50;&#x7EC4;&#x4EF6;&#x4E4B;&#x95F4;&#x662F;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x901A;&#x4FE1;&#x7684;&#xFF0C;&#x5B50;&#x7EC4;&#x4EF6;&#x7684;&#x6E32;&#x67D3;&#x51FD;&#x6570;&#x4E0D;&#x5E94;&#x8BE5;&#x88AB;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F18;&#x5316;&#x4E00;&#x4E0B;&#x4EE3;&#x7801;&#xFF0C;&#x628A;Child&#x7EC4;&#x4EF6;&#x6539;&#x6210;&#x7EE7;&#x627F;React.PureComponent:</p>
+<pre><code>
+class Child extends React.PureComponent {
+  render() {
+    console.log(&apos;Child render function is runing.&apos;);
+    return &lt;div&gt;Child&lt;/div&gt;;
+  }
+}
+</code></pre><p>&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x518D;&#x6B21;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x5B50;&#x7EC4;&#x4EF6;&#x7684;render&#x51FD;&#x6570;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#x4E86;&#xFF1A;</p>
+<p><img src="../assets/image-20210115181524224.png" alt="image-20210115181524224"></p>
+<p>&#x7136;&#x540E;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x628A;&#x6570;&#x5B57;&#x4F5C;&#x4E3A;props&#x4F20;&#x7ED9;Child&#xFF0C;&#x4FEE;&#x6539;&#x4EE3;&#x7801;&#x4E3A;&#x4E0B;&#x9762;&#xFF1A;</p>
+<pre><code>&lt;Child props={this.state.num} /&gt;
+</code></pre><p>&#x8FD9;&#x65F6;&#x5019;&#x518D;&#x6B21;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x5B50;&#x7EC4;&#x4EF6;&#x7684;render&#x51FD;&#x6570;&#x53C8;&#x4F1A;&#x89E6;&#x53D1;&#x4E86;&#xFF1A;</p>
+<p><img src="../assets/image-20210115181731480.png" alt="image-20210115181731480"></p>
+<p>&#x8FD9;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x4F18;&#x5316;Child&#x7EC4;&#x4EF6;&#xFF0C;&#x5E76;&#x518D;&#x6B21;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF1A;</p>
+<pre><code>class Child extends React.PureComponent {
+  shouldComponentUpdate() {
+    return false;
+  }
+  render() {
+    console.log(&apos;Child render function is runing.&apos;);
+    return &lt;div&gt;Child&lt;/div&gt;;
+  }
+}
+</code></pre><p><img src="../assets/image-20210115181848411.png" alt="image-20210115181848411"></p>
+<p>&#x5B50;&#x7EC4;&#x4EF6;&#x6CA1;&#x7528;&#x5230;&#x7684;props&#x6539;&#x53D8;&#x4E5F;&#x4E0D;&#x4F1A;&#x66F4;&#x65B0;&#x4E86;&#xFF0C;&#x5F53;&#x7136;shouldComponentUpdate&#x8FD8;&#x662F;&#x8981;&#x6309;&#x5B9E;&#x9645;&#x9700;&#x8981;&#x53BB;&#x5199;&#xFF0C;&#x8FD9;&#x91CC;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;false&#xFF0C;&#x540E;&#x9762;render&#x51FD;&#x6570;&#x90FD;&#x4E0D;&#x4F1A;&#x518D;&#x88AB;&#x89E6;&#x53D1;&#x4E86;&#x3002;</p>
+<h2 id="reactmemo">React.memo</h2>
+<p>&#x6211;&#x4EEC;&#x628A;&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x6539;&#x6210;&#x51FD;&#x6570;&#x7EC4;&#x4EF6;&#xFF1A;</p>
+<pre><code>function Child() {
+  console.log(&apos;Child render function is runing.&apos;);
+  return &lt;div&gt;Child&lt;/div&gt;;
+}
+
+function Parent() {
+  const [num, setNum] = useState(0);
+  function handleClick() {
+    setNum(num + 1);
+  }
+
+  console.log(&apos;Parent render function is runing.&apos;);
+  return (
+    &lt;&gt;
+      &lt;button type=&quot;primary&quot; onClick={handleClick}&gt;
+        click to change{num}
+      &lt;/button&gt;
+      &lt;Child /&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre><p>&#x8FD9;&#x65F6;&#x5019;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF0C;&#x7236;&#x5B50;&#x7EC4;&#x4EF6;&#x90FD;&#x89E6;&#x53D1;&#x4E86;&#x6E32;&#x67D3;&#xFF1A;</p>
+<p><img src="../assets/image-20210115182439158.png" alt="image-20210115182439158"></p>
+<p>&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x5B50;&#x7EC4;&#x4EF6;&#xFF1A;</p>
+<pre><code>function ChildFn() {
+  console.log(&apos;Child render function is runing.&apos;);
+  return &lt;div&gt;Child&lt;/div&gt;;
+}
+const Child = React.memo(ChildFn);
+</code></pre><p>&#x518D;&#x6B21;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF0C;&#x5B50;&#x7EC4;&#x4EF6;&#x4E0D;&#x518D;&#x89E6;&#x53D1;&#x6E32;&#x67D3;&#x4E86;&#xFF1A;</p>
+<p><img src="../assets/image-20210115182723901.png" alt="image-20210115182723901"></p>
+<p>&#x82E5;&#x4F20;&#x4E86;props&#x7ED9;&#x5B50;&#x7EC4;&#x4EF6;&#xFF0C;&#x5B50;&#x7EC4;&#x4EF6;&#x540C;&#x6837;&#x4F1A;&#x89E6;&#x53D1;&#x6E32;&#x67D3;&#x3002;</p>
+<h2 id="&#x7ED3;&#x8BED;">&#x7ED3;&#x8BED;</h2>
+<p>PureComponent&#x548C;React.memo&#x90FD;&#x662F;&#x4E3A;&#x4E86;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x800C;&#x51FA;&#x73B0;&#x7684;&#xFF0C;&#x5199;&#x4EE3;&#x7801;&#x65F6;&#x5FC5;&#x987B;&#x591A;&#x8003;&#x8651;&#x6027;&#x80FD;&#x4F18;&#x5316;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="react hook 原理.html" class="navigation navigation-prev " aria-label="Previous page: react hook 原理">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="React-redux用法.html" class="navigation navigation-next " aria-label="Next page: React-redux用法">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"react PureComponent和React.memo的简单作用","level":"1.2.17","depth":2,"next":{"title":"React-redux用法","level":"1.2.18","depth":2,"path":"技术笔记/React-redux用法.md","ref":"技术笔记/React-redux用法.md","articles":[]},"previous":{"title":"react hook 原理","level":"1.2.16","depth":2,"path":"技术笔记/react hook 原理.md","ref":"技术笔记/react hook 原理.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"技术笔记/react PureComponent和React.memo的简单作用.md","mtime":"2021-01-15T11:00:27.311Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-05-28T09:24:26.445Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
