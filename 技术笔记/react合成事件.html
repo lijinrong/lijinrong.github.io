@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>React PureComponent和React.Memo的简单作用 · GitBook</title>
+        <title>React合成事件 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -81,10 +81,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="react hook 原理.html" />
+    <link rel="next" href="typescript学习.html" />
     
     
-    <link rel="prev" href="markdown.html" />
+    <link rel="prev" href="react hook 原理.html" />
     
 
     </head>
@@ -298,7 +298,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.10" data-path="react PureComponent和React.memo的简单作用.html">
+        <li class="chapter " data-level="3.10" data-path="react PureComponent和React.memo的简单作用.html">
             
                 <a href="react PureComponent和React.memo的简单作用.html">
             
@@ -324,7 +324,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.12" data-path="react合成事件.html">
+        <li class="chapter active" data-level="3.12" data-path="react合成事件.html">
             
                 <a href="react合成事件.html">
             
@@ -562,7 +562,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >React PureComponent和React.Memo的简单作用</a>
+        <a href=".." >React合成事件</a>
     </h1>
 </div>
 
@@ -577,108 +577,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#react-purecomponent&#x548C;reactmemo&#x7684;&#x7B80;&#x5355;&#x4F5C;&#x7528;"><b></b>react PureComponent&#x548C;React.memo&#x7684;&#x7B80;&#x5355;&#x4F5C;&#x7528;</a></li><ul><li><span class="title-icon "></span><a href="#purecomponent"><b></b>PureComponent</a></li><li><span class="title-icon "></span><a href="#reactmemo"><b></b>React.memo</a></li><li><span class="title-icon "></span><a href="#&#x7ED3;&#x8BED;"><b></b>&#x7ED3;&#x8BED;</a></li></ul></ul></div><p>[TOC]</p>
-<h1 id="react-purecomponent&#x548C;reactmemo&#x7684;&#x7B80;&#x5355;&#x4F5C;&#x7528;"><a name="react-purecomponent&#x548C;reactmemo&#x7684;&#x7B80;&#x5355;&#x4F5C;&#x7528;" class="anchor-navigation-ex-anchor" href="#react-purecomponent&#x548C;reactmemo&#x7684;&#x7B80;&#x5355;&#x4F5C;&#x7528;"><i class="fa fa-link" aria-hidden="true"></i></a>react PureComponent&#x548C;React.memo&#x7684;&#x7B80;&#x5355;&#x4F5C;&#x7528;</h1>
-<blockquote>
-<p>PureComponent &#x548C; React.memo&#x7684;&#x4F5C;&#x7528;&#x90FD;&#x662F;&#x4E3A;&#x4E86;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x800C;&#x51FA;&#x73B0;&#x7684;&#xFF0C;&#x76EE;&#x7684;&#x662F;&#x51CF;&#x5C11;&#x7EC4;&#x4EF6;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x6E32;&#x67D3;&#x3002;&#x533A;&#x522B;&#x662F;PureComponent&#x662F;&#x4F5C;&#x7528;&#x5728;class &#x7EC4;&#x4EF6;&#xFF0C;React.memo&#x662F;&#x4F5C;&#x7528;&#x5728;&#x51FD;&#x6570;&#x7EC4;&#x4EF6;&#x3002;</p>
-</blockquote>
-<h2 id="purecomponent"><a name="purecomponent" class="anchor-navigation-ex-anchor" href="#purecomponent"><i class="fa fa-link" aria-hidden="true"></i></a>PureComponent</h2>
-<p>&#x5148;&#x6765;&#x770B;&#x4E2A;&#x7B80;&#x5355;&#x4F8B;&#x5B50;&#xFF1A;</p>
-<pre><code>class Child extends React.Component {
-  render() {
-    console.log(&apos;Child render function is runing.&apos;);
-    return &lt;div&gt;Child&lt;/div&gt;;
-  }
-}
-
-class Parent extends React.Component {
-  state = {
-    num: 1,
-  };
-  handleClick = () =&gt; {
-    this.setState(state =&gt; ({
-      num: state.num + 1,
-    }));
-  };
-
-  render() {
-    console.log(&apos;Parent render function is runing.&apos;);
-    return (
-      &lt;&gt;
-        &lt;button type=&quot;primary&quot; onClick={this.handleClick}&gt;
-          click to change{this.state.num}
-        &lt;/button&gt;
-        &lt;Child /&gt;
-      &lt;/&gt;
-    );
-  }
-}
-</code></pre><p>&#x9875;&#x9762;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x5C31;&#x4E00;&#x4E2A;&#x6309;&#x94AE;&#xFF0C;&#x548C;&#x53EA;&#x6709;&#x6587;&#x672C;&#x7684;&#x5B50;&#x7EC4;&#x4EF6;&#xFF0C;&#x7236;&#x5B50;&#x7EC4;&#x4EF6;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x901A;&#x4FE1;&#xFF1A;</p>
-<p><img src="../assets/image-20210115175807882.png" alt="image-20210115175807882"></p>
-<p>&#x5F53;&#x6211;&#x4EEC;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x7236;&#x7EC4;&#x4EF6;&#x548C;&#x5B50;&#x7EC4;&#x4EF6;&#x7684;render&#x51FD;&#x6570;&#x90FD;&#x88AB;&#x89E6;&#x53D1;&#x4E86;&#xFF1A;</p>
-<p><img src="../assets/image-20210115180051582.png" alt="image-20210115180051582"></p>
-<p>&#x4F46;&#x662F;&#x7236;&#x5B50;&#x7EC4;&#x4EF6;&#x4E4B;&#x95F4;&#x662F;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x901A;&#x4FE1;&#x7684;&#xFF0C;&#x5B50;&#x7EC4;&#x4EF6;&#x7684;&#x6E32;&#x67D3;&#x51FD;&#x6570;&#x4E0D;&#x5E94;&#x8BE5;&#x88AB;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F18;&#x5316;&#x4E00;&#x4E0B;&#x4EE3;&#x7801;&#xFF0C;&#x628A;Child&#x7EC4;&#x4EF6;&#x6539;&#x6210;&#x7EE7;&#x627F;React.PureComponent:</p>
-<pre><code>
-class Child extends React.PureComponent {
-  render() {
-    console.log(&apos;Child render function is runing.&apos;);
-    return &lt;div&gt;Child&lt;/div&gt;;
-  }
-}
-</code></pre><p>&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x518D;&#x6B21;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x5B50;&#x7EC4;&#x4EF6;&#x7684;render&#x51FD;&#x6570;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;&#x4E86;&#xFF1A;</p>
-<p><img src="../assets/image-20210115181524224.png" alt="image-20210115181524224"></p>
-<p>&#x7136;&#x540E;&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x628A;&#x6570;&#x5B57;&#x4F5C;&#x4E3A;props&#x4F20;&#x7ED9;Child&#xFF0C;&#x4FEE;&#x6539;&#x4EE3;&#x7801;&#x4E3A;&#x4E0B;&#x9762;&#xFF1A;</p>
-<pre><code>&lt;Child props={this.state.num} /&gt;
-</code></pre><p>&#x8FD9;&#x65F6;&#x5019;&#x518D;&#x6B21;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x5B50;&#x7EC4;&#x4EF6;&#x7684;render&#x51FD;&#x6570;&#x53C8;&#x4F1A;&#x89E6;&#x53D1;&#x4E86;&#xFF1A;</p>
-<p><img src="../assets/image-20210115181731480.png" alt="image-20210115181731480"></p>
-<p>&#x8FD9;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x7EE7;&#x7EED;&#x4F18;&#x5316;Child&#x7EC4;&#x4EF6;&#xFF0C;&#x5E76;&#x518D;&#x6B21;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF1A;</p>
-<pre><code>class Child extends React.PureComponent {
-  shouldComponentUpdate() {
-    return false;
-  }
-  render() {
-    console.log(&apos;Child render function is runing.&apos;);
-    return &lt;div&gt;Child&lt;/div&gt;;
-  }
-}
-</code></pre><p><img src="../assets/image-20210115181848411.png" alt="image-20210115181848411"></p>
-<p>&#x5B50;&#x7EC4;&#x4EF6;&#x6CA1;&#x7528;&#x5230;&#x7684;props&#x6539;&#x53D8;&#x4E5F;&#x4E0D;&#x4F1A;&#x66F4;&#x65B0;&#x4E86;&#xFF0C;&#x5F53;&#x7136;shouldComponentUpdate&#x8FD8;&#x662F;&#x8981;&#x6309;&#x5B9E;&#x9645;&#x9700;&#x8981;&#x53BB;&#x5199;&#xFF0C;&#x8FD9;&#x91CC;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;false&#xFF0C;&#x540E;&#x9762;render&#x51FD;&#x6570;&#x90FD;&#x4E0D;&#x4F1A;&#x518D;&#x88AB;&#x89E6;&#x53D1;&#x4E86;&#x3002;</p>
-<h2 id="reactmemo"><a name="reactmemo" class="anchor-navigation-ex-anchor" href="#reactmemo"><i class="fa fa-link" aria-hidden="true"></i></a>React.memo</h2>
-<p>&#x6211;&#x4EEC;&#x628A;&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x6539;&#x6210;&#x51FD;&#x6570;&#x7EC4;&#x4EF6;&#xFF1A;</p>
-<pre><code>function Child() {
-  console.log(&apos;Child render function is runing.&apos;);
-  return &lt;div&gt;Child&lt;/div&gt;;
-}
-
-function Parent() {
-  const [num, setNum] = useState(0);
-  function handleClick() {
-    setNum(num + 1);
-  }
-
-  console.log(&apos;Parent render function is runing.&apos;);
-  return (
-    &lt;&gt;
-      &lt;button type=&quot;primary&quot; onClick={handleClick}&gt;
-        click to change{num}
-      &lt;/button&gt;
-      &lt;Child /&gt;
-    &lt;/&gt;
-  );
-}
-</code></pre><p>&#x8FD9;&#x65F6;&#x5019;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF0C;&#x7236;&#x5B50;&#x7EC4;&#x4EF6;&#x90FD;&#x89E6;&#x53D1;&#x4E86;&#x6E32;&#x67D3;&#xFF1A;</p>
-<p><img src="../assets/image-20210115182439158.png" alt="image-20210115182439158"></p>
-<p>&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x53EA;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x5B50;&#x7EC4;&#x4EF6;&#xFF1A;</p>
-<pre><code>function ChildFn() {
-  console.log(&apos;Child render function is runing.&apos;);
-  return &lt;div&gt;Child&lt;/div&gt;;
-}
-const Child = React.memo(ChildFn);
-</code></pre><p>&#x518D;&#x6B21;&#x70B9;&#x51FB;&#x6309;&#x94AE;&#xFF0C;&#x5B50;&#x7EC4;&#x4EF6;&#x4E0D;&#x518D;&#x89E6;&#x53D1;&#x6E32;&#x67D3;&#x4E86;&#xFF1A;</p>
-<p><img src="../assets/image-20210115182723901.png" alt="image-20210115182723901"></p>
-<p>&#x82E5;&#x4F20;&#x4E86;props&#x7ED9;&#x5B50;&#x7EC4;&#x4EF6;&#xFF0C;&#x5B50;&#x7EC4;&#x4EF6;&#x540C;&#x6837;&#x4F1A;&#x89E6;&#x53D1;&#x6E32;&#x67D3;&#x3002;</p>
-<h2 id="&#x7ED3;&#x8BED;"><a name="&#x7ED3;&#x8BED;" class="anchor-navigation-ex-anchor" href="#&#x7ED3;&#x8BED;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x7ED3;&#x8BED;</h2>
-<p>PureComponent&#x548C;React.memo&#x90FD;&#x662F;&#x4E3A;&#x4E86;&#x6027;&#x80FD;&#x4F18;&#x5316;&#x800C;&#x51FA;&#x73B0;&#x7684;&#xFF0C;&#x5199;&#x4EE3;&#x7801;&#x65F6;&#x5FC5;&#x987B;&#x591A;&#x8003;&#x8651;&#x6027;&#x80FD;&#x4F18;&#x5316;</p>
+                                <p>&#x5408;&#x6210;&#x4E8B;&#x4EF6;&#xFF1A;react&#x4F1A;&#x628A;jsx&#x4E0A;&#x7ED1;&#x5B9A;&#x7684;&#x4E8B;&#x4EF6;&#x5168;&#x90E8;&#x90FD;&#x7ED1;&#x5B9A;&#x5230;document&#x4E0A;</p>
+<p>&#x6240;&#x4EE5;&#x5982;&#x679C;&#x901A;&#x8FC7;&#x4EE3;&#x7801;&#x7ED1;&#x5B9A;&#x7684;document&#x4E8B;&#x4EF6;&#xFF08;document.addEventListener&#xFF09;&#x662F;&#x65E0;&#x6CD5;&#x901A;&#x8FC7;&#x5408;&#x6210;&#x4E8B;&#x4EF6;&#x963B;&#x6B62;&#x5192;&#x6CE1;&#x7684;&#x3002;</p>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#xFF1A;e.stopPropagation() &#x6539;&#x4E3A;event.nativeEvent.stopImmediatePropagation()</p>
 
                                 
                                 </section>
@@ -706,12 +607,12 @@ const Child = React.memo(ChildFn);
 
             
                 
-                <a href="markdown.html" class="navigation navigation-prev " aria-label="Previous page: Markdown">
+                <a href="react hook 原理.html" class="navigation navigation-prev " aria-label="Previous page: React Hook 原理">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="react hook 原理.html" class="navigation navigation-next " aria-label="Next page: React Hook 原理">
+                <a href="typescript学习.html" class="navigation navigation-next " aria-label="Next page: Typescript学习">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -722,7 +623,7 @@ const Child = React.memo(ChildFn);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"React PureComponent和React.Memo的简单作用","level":"3.10","depth":1,"next":{"title":"React Hook 原理","level":"3.11","depth":1,"path":"技术笔记/react hook 原理.md","ref":"技术笔记/react hook 原理.md","articles":[]},"previous":{"title":"Markdown","level":"3.9","depth":1,"path":"技术笔记/markdown.md","ref":"技术笔记/markdown.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-lunr","-search","-sharing","search-pro","expandable-chapters","chapter-fold","splitter","anchor-navigation-ex","back-to-top-button","code","github","summary"],"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/lijinrong"},"summary":{},"splitter":{},"search-pro":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"技术笔记/react PureComponent和React.memo的简单作用.md","mtime":"2021-01-15T11:00:27.311Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-09-06T09:49:33.023Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"React合成事件","level":"3.12","depth":1,"next":{"title":"Typescript学习","level":"3.13","depth":1,"path":"技术笔记/typescript学习.md","ref":"技术笔记/typescript学习.md","articles":[]},"previous":{"title":"React Hook 原理","level":"3.11","depth":1,"path":"技术笔记/react hook 原理.md","ref":"技术笔记/react hook 原理.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-lunr","-search","-sharing","search-pro","expandable-chapters","chapter-fold","splitter","anchor-navigation-ex","back-to-top-button","code","github","summary"],"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/lijinrong"},"summary":{},"splitter":{},"search-pro":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":false,"showLevel":false},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"技术笔记/react合成事件.md","mtime":"2021-07-02T09:19:18.963Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-09-06T09:49:33.023Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
